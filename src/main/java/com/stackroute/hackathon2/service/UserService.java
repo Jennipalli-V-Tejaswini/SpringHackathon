@@ -2,45 +2,61 @@ package com.stackroute.hackathon2.service;
 
 import java.util.List;
 
-import org.tejas.NewsAggregator.domain.NewsModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.google.common.base.Optional;
 import com.stackroute.hackathon2.domain.UserModel;
 import com.stackroute.hackathon2.interf.UserInterface;
+import com.stackroute.hackathon2.repository.UserRepository;
+
+@Service
 
 public class UserService implements UserInterface {
+	@Autowired
+	public UserRepository userRepository;
+	
 
 	@Override
 	public List<UserModel> getAllUsers() {
-		List<UserModel> List1=(List<UserModel>)newsAggregatorRepository.findAll();
-		return null;
+		List<UserModel> List1=(List<UserModel>)userRepository.findAll();
+		return List1;
 	}
 
 	@Override
-	public UserModel addUser(UserModel userModel) {
+	public void addUser(UserModel userModel) {
 		// TODO Auto-generated method stub
-		newsAggregatorRepository.save(newsModel);
 		
-		return null;
-	}
-
-	@Override
-	public void deleteUser(String id) {
-		// TODO Auto-generated method stub
-		newsAggregatorRepository.delete(UserId);
+		userRepository.save(userModel);
 		
 	}
 
 	@Override
-	public void getUser(String id) {
+	public void deleteUser(int id) {
 		// TODO Auto-generated method stub
-		newsAggregatorRepository.get(UserId);
-		
-	}
+		userRepository.delete(id);
+		}
+	
+    @Override
+	public UserModel getUser(int id) {
+		// TODO Auto-generated method stub 
+		return userRepository.findOne(id);
+		}
 
 	@Override
-	public void updateUser(String id) {
-		// TODO Auto-generated method stub
+	public void updateUser(int id,String EmailId) {
+		UserModel newUserModel=userRepository.findOne(id);
+		userRepository.delete(id);
+		newUserModel.setUserEmailId(EmailId);
+		userRepository.save(newUserModel);
+		
 		
 	}
-
+    
 }
+
+	
+
+	
+
+
