@@ -19,7 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 		               .select().apis(RequestHandlerSelectors.basePackage("com.stackroute.hackathon2"))
 		               .paths(PathSelectors.regex("/user.*"))
 		               .build();
-		           
+		       
 		   }
 		}
 		

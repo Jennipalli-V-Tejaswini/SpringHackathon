@@ -12,7 +12,7 @@ public interface UserInterface {
 		   public  void addUser(UserModel userModel);
 		   public  void deleteUser(int id);
 	       public  UserModel getUser(int id);
-	       public void updateUser(int id,String emailId);
+	       public void updateUser(int id,UserModel userModel);
 		   
 
 	}

@@ -28,6 +28,7 @@ public class UserController {
 		
 		return new ResponseEntity<Iterable<UserModel>>(userService.getAllUsers(), HttpStatus.OK);
 	}
+	
 
 	@RequestMapping("{userid}")
 	public ResponseEntity<UserModel> getUser(@PathVariable(value = "userid") int id) {
@@ -47,9 +48,10 @@ public class UserController {
 
 	}
 	
-	@RequestMapping(value = "{userid}/{emailId}", method = RequestMethod.PUT)
-	public ResponseEntity<String> Update(@PathVariable(value = "userid") int id,@PathVariable(value = "emailId") String EmailId) {
-		userService.updateUser(id,EmailId);
+	@RequestMapping(value = "{userid}", method = RequestMethod.PUT)
+	public ResponseEntity<String> Update(@PathVariable(value = "userid") int id, @RequestBody UserModel userModel) {
+		System.out.println("whedeqoiu");
+		userService.updateUser(id,userModel);
 		return new ResponseEntity<String>("Updated successfully", HttpStatus.OK);
 
 	}

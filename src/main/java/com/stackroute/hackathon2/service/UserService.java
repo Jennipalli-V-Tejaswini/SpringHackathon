@@ -44,12 +44,15 @@ public class UserService implements UserInterface {
 		}
 
 	@Override
-	public void updateUser(int id,String EmailId) {
-		UserModel newUserModel=userRepository.findOne(id);
+	public void updateUser(int id,UserModel userModel) {
 		userRepository.delete(id);
-		newUserModel.setUserEmailId(EmailId);
-		userRepository.save(newUserModel);
+		userRepository.save(userModel);
 		
+		
+	}
+
+	public void setUserRepository(UserRepository userRepository2) {
+	this.userRepository=userRepository2;
 		
 	}
     
